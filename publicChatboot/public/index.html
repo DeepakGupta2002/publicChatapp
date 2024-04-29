@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <!-- create the basic page chat application  form-->
+    <ul class="myul">
+        <li class="li">welcome</li><br>
+        <li>welcome</li><br>
+
+
+
+    </ul>
+    <form class="myform">
+
+        <input type="text" width="100vh">
+        <br>
+        <input type="button" value="send">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+        var socket = io();
+        // const ul = document.querySelector('myul')
+        socket.on('serverevent', (pyload) => {
+            // console.log(pyload);
+            ul.innerHTML += `<li>${pyload}<li>`
+        })
+        var ul = document.querySelector(".myul");
+        const myform = document.querySelector(".myform");
+
+        myform.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Access the input field(s) of the form
+            const inputField = myform.querySelector('input[type="text"]');
+            const msg = inputField.value; // Store the input value in the 'msg' variable
+
+            // Handle the form data (for example, add it to the list)
+            // const li = document.createElement("li");
+            // li.textContent = msg; // Use the 'msg' variable instead of 'data'
+            // ul.appendChild(li);
+
+            // Output the message to the console
+            // console.log(msg);
+
+            // Optionally, clear the input field after submitting the form
+            inputField.value = '';
+            // Send the message to the server
+            socket.emit('chatmessage', msg);
+        });
+    </script>
+
+</body>
+
+</html>
