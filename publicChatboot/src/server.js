@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
 
     // Handle chat message
     socket.on('chatmessage', (payload) => {
-        console.log("hello", payload);
+        console.log(payload);
         io.emit('serverevent', payload);
     });
 });

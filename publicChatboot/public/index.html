@@ -26,7 +26,8 @@
 
         <input type="text" width="100vh">
         <br>
-        <input type="button" value="send">
+        <hr>
+        <input type="submit">
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script>
@@ -46,17 +47,10 @@
             const inputField = myform.querySelector('input[type="text"]');
             const msg = inputField.value; // Store the input value in the 'msg' variable
 
-            // Handle the form data (for example, add it to the list)
-            // const li = document.createElement("li");
-            // li.textContent = msg; // Use the 'msg' variable instead of 'data'
-            // ul.appendChild(li);
 
-            // Output the message to the console
-            // console.log(msg);
 
-            // Optionally, clear the input field after submitting the form
+
             inputField.value = '';
-            // Send the message to the server
             socket.emit('chatmessage', msg);
         });
     </script>
